@@ -5,6 +5,7 @@ import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/ims-community-22/',
   resolve: {
     alias: {
       src: path.resolve(__dirname, './src'),
