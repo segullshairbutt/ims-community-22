@@ -1,0 +1,285 @@
+[
+  {
+    "id": "1",
+    "title": "Task 2 Launch - 4 Compartments",
+    "description": "Launch of task 2 under the topic 4 Compartments. Participants must thoroughly review task documents, watch the briefing video, and follow presentation submission guidelines.",
+    "date": "2025-12-22T00:00:00",
+    "tags": ["IMS Task Series", "Group-13"],
+    "deadline": "2026-02-09T23:59:59",
+    "resources": [
+      {
+        "type": "video",
+        "url": "https://youtu.be/f1bqPuWudV0?si=UNX3kOBMNnSzGHgE",
+        "title": "Task Briefing Video"
+      },
+      {
+        "type": "form",
+        "url": "https://forms.gle/UcpJ5F6mx4HDWEUX7",
+        "title": "Volunteer Captain Form"
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "title": "Task Discussion Session - How to Approach Task 2",
+    "description": "Detailed session to discuss task 2 and how to complete it effectively.",
+    "date": "2025-12-23T20:00:00",
+    "tags": ["IMS Task Series", "Group-13"],
+    "meetingLink": "https://calendar.app.google/CSdjM1hbfzvpFnHH8",
+    "recordingLinks": [
+      "https://fathom.video/share/dEFp21QDKPvUdzVJmXKCjjE7t1h9aowc"
+    ]
+  },
+  {
+    "id": "3",
+    "title": "Allah's Names Discussion - Al Jabbar, Al Basit, Al Khafiz, Al Rafey, Al Moiz",
+    "description": "Study and discussion of five divine names with their meanings and significance.",
+    "date": "2026-02-25T15:00:00",
+    "duration": "30-45 minutes",
+    "platform": "Google Meet",
+    "meetingLink": "https://meet.google.com/ebr-ggrv-zmx",
+    "tags": ["Islamic Knowledge Series", "Group-13"]
+  },
+  {
+    "id": "4",
+    "title": "Mental Health & Inner Peace Discussion",
+    "description": "1-hour discussion on mental health as foundational for spiritual and professional success. Part of bi-weekly series on holistic growth.",
+    "date": "2026-02-25T22:00:00",
+    "tags": ["Holistic Growth Series", "Group-13"],
+    "meetingLink": "https://meet.google.com/mvd-moxx-pkp"
+  },
+  {
+    "id": "5",
+    "title": "Qissa e Adam o Iblis - Ramadan Series",
+    "description": "Session on the story of Adam and Iblis during Ramadan series.",
+    "date": "2026-03-08T23:00:00",
+    "tags": ["Ramadan Series", "Group-13"]
+  },
+  {
+    "id": "6",
+    "title": "Preparation for Upcoming Session - Raheeq ul Makhtum",
+    "description": "Preparation guidance for TLs (Team Leaders) to read pages 219-230 from Ar-Raheeq Al-Makhtum (The Sealed Nectar) before the session.",
+    "date": "2026-03-07T00:00:00",
+    "tags": ["Seerah Series", "Group-13"],
+    "resources": [
+      {
+        "type": "book",
+        "url": "https://drive.google.com/file/d/1S5SBExeoPaB60uUuQIY2kN02_f9g8UwO/view?usp=drive_open",
+        "title": "Ar-Raheeq Al-Makhtum (Pages 219-230)"
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "title": "Isra and Miraj - Geopolitical and Landscape Analysis",
+    "description": "Seerah session analyzing the geopolitical context and landscape of the Isra and Miraj event.",
+    "date": "2026-01-02T00:00:00",
+    "tags": ["Seerah Series", "Group-13"],
+    "meetingLink": "https://meet.google.com/ydi-zzwd-fsm",
+    "recordingLinks": [
+      "https://fathom.video/share/D63UFzPtUzTmjxrGHtKSqea2UyM3vbG-"
+    ]
+  },
+  {
+    "id": "8",
+    "title": "The Neuroscience of Surah Ad-Duha",
+    "description": "Thursday IMS session exploring the neuroscience principles within Surah Ad-Duha, presented by Mian Fahad.",
+    "date": "2026-04-09T20:00:00",
+    "tags": ["IMS Sessions", "Group-13"],
+    "presentedBy": "Mian Fahad",
+    "meetingLink": "https://meet.google.com/wzf-cezt-mop",
+    "recordingLinks": [
+      "https://fathom.video/share/paY2aczwDKANa6YAYdHaq49t2BCqpiuM"
+    ]
+  },
+  {
+    "id": "9",
+    "title": "The Prophetic Identity - Ep2 - X-ray of our Life",
+    "description": "Wednesday IMS session on the prophetic identity and its implications for our lives, presented by Muhammad Asadullah.",
+    "date": "2026-04-01T20:30:00",
+    "tags": ["IMS Sessions", "Group-13"],
+    "presentedBy": "Muhammad Asadullah",
+    "duration": "60 minutes",
+    "recordingLinks": [
+      "https://fathom.video/share/VY1_Gnxhsz8yxYn6N4bi9vegdtLgcW4s",
+      "https://tldv.io/app/meetings/69cd39f335919300139b6340/"
+    ]
+  },
+  {
+    "id": "10",
+    "title": "Seerah Session - Pages 273-283",
+    "description": "Saturday Seerah session from Ar-Raheeq Al-Makhtum pages 273-283, presented by Ghaziyan C22 G11.",
+    "date": "2026-04-11T22:00:00",
+    "tags": ["Seerah Series", "Group-13"],
+    "presentedBy": "Ghaziyan C22 G11",
+    "meetingLink": "https://meet.google.com/utj-fmpe-opy",
+    "resources": [
+      {
+        "type": "book",
+        "url": "https://drive.google.com/file/d/1wH1J2QVGec8op-rGao3C02ZFDAIeYKVH/view?usp=drivesdk",
+        "title": "Ar-Raheeq Al-Makhtum (Pages 273-283)"
+      }
+    ]
+  },
+  {
+    "id": "11",
+    "title": "Qur'an Study Circle - Friday Class",
+    "description": "Weekly Qur'an study circle focusing on translation, root words, grammar, and tafseer with shared reflections. Every Friday at 9:00 PM.",
+    "date": "2026-04-10T21:00:00",
+    "recurringPattern": "Every Friday",
+    "tags": ["Qur'an Study Circle", "Group-13"],
+    "meetingLink": "https://meet.google.com/ydi-zzwd-fsm",
+    "resources": [
+      {
+        "type": "recordings",
+        "url": "https://docs.google.com/spreadsheets/d/1BG5OJ3KAVc3McW2gX5825_VO1oLjCR5sVYaPoNA3UzY/edit?usp=sharing",
+        "title": "Previous Recording Links"
+      }
+    ]
+  },
+  {
+    "id": "12",
+    "title": "4 Compartments Presentation",
+    "description": "Group presentation on the 4 Compartments topic, presented by Asma Asad.",
+    "date": "2026-04-11T20:00:00",
+    "tags": ["Group Presentations", "Group-13"],
+    "presentedBy": "Asma Asad",
+    "duration": "90 minutes",
+    "endTime": "2026-04-11T21:30:00"
+  },
+  {
+    "id": "13",
+    "title": "Digital Addiction Crisis Among Youth",
+    "description": "Presentation discussing the crisis of digital addiction among young people, its impacts, and potential solutions.",
+    "date": "2026-04-14T22:00:00",
+    "tags": ["Group Presentations", "Group-13"],
+    "presentedBy": "Ali (قاف ~ قلم)"
+  },
+  {
+    "id": "14",
+    "title": "جہیز کی حیثیت اسلام میں (Status of Dowry in Islam)",
+    "description": "Presentation exploring the Islamic perspective on dowry (Jehaiz) and its religious significance.",
+    "date": "2026-04-15T21:00:00",
+    "tags": ["Group Presentations", "Group-13"]
+  },
+  {
+    "id": "15",
+    "title": "Reviving Pakistan Reading Culture",
+    "description": "Presentation on strategies to revive and promote reading culture in Pakistan.",
+    "date": "2026-04-20T21:00:00",
+    "tags": ["Group Presentations", "Group-13"]
+  },
+  {
+    "id": "16",
+    "title": "Untangling Nikkah",
+    "description": "Presentation providing clarity on Islamic marriage (Nikkah) principles and practices.",
+    "date": "2026-04-21T22:00:00",
+    "tags": ["Group Presentations", "Group-13"]
+  },
+  {
+    "id": "17",
+    "title": "Navigating Career Clarity",
+    "description": "Presentation on achieving clarity in career choices and professional development.",
+    "date": "2026-04-22T22:00:00",
+    "tags": ["Group Presentations", "Group-13"]
+  },
+  {
+    "id": "18",
+    "title": "Anatomy of Islamic Decline",
+    "description": "Presentation analyzing the factors and causes of decline in Islamic civilization.",
+    "date": "2026-04-23T22:00:00",
+    "tags": ["Group Presentations", "Group-13"],
+    "presentedBy": "Asadullah"
+  },
+  {
+    "id": "19",
+    "title": "Healing the Mind - Psychological Strength Through the Lives of the Prophet",
+    "description": "Presentation on developing psychological strength and mental health through studying the prophetic life.",
+    "date": "2026-04-21T22:00:00",
+    "tags": ["Group Presentations", "Group-13"],
+    "presentedBy": "Rida Azam"
+  },
+  {
+    "id": "20",
+    "title": "Loss of Reading Culture in Pakistan",
+    "description": "Analysis of declining reading habits in Pakistan and strategies for revival.",
+    "date": "2026-04-20T21:00:00",
+    "tags": ["Group Presentations", "Group-13"],
+    "presentedBy": "Ayesha"
+  },
+  {
+    "id": "21",
+    "title": "Decline of Intellectual Culture in Muslim Societies",
+    "description": "Examination of the decline in intellectual and scholarly traditions in Muslim societies.",
+    "date": "2026-04-27T22:00:00",
+    "tags": ["Group Presentations", "Group-13"],
+    "presentedBy": "Rida Azam"
+  },
+  {
+    "id": "22",
+    "title": "Translating Golden Age Classics for the Islamic World",
+    "description": "Discussion on translating classical Islamic texts for contemporary audiences.",
+    "date": "2026-04-28T22:00:00",
+    "tags": ["Group Presentations", "Group-13"],
+    "presentedBy": "Asadullah"
+  },
+  {
+    "id": "23",
+    "title": "Duniya ke Rishte aur Aakhirat ka Rishta (Worldly Relationships and Hereafter)",
+    "description": "Exploring the relationship between worldly connections and spiritual accountability.",
+    "date": "2026-04-29T22:00:00",
+    "tags": ["Group Presentations", "Group-13"],
+    "presentedBy": "Humaira"
+  },
+  {
+    "id": "24",
+    "title": "Mastering the Mind",
+    "description": "Comprehensive presentation on mastering and controlling the mind for personal growth.",
+    "date": "2026-05-01T22:00:00",
+    "tags": ["Group Presentations", "Group-13"],
+    "presentedBy": "Rida Azam"
+  },
+  {
+    "id": "25",
+    "title": "Marriage Preparation Crisis in Pakistani Youth",
+    "description": "Analysis of challenges young Pakistanis face in preparing for marriage in modern times.",
+    "date": "2026-05-05T22:00:00",
+    "tags": ["Group Presentations", "Group-13"],
+    "presentedBy": "Maaz"
+  },
+  {
+    "id": "26",
+    "title": "IMS Introductory Session",
+    "description": "Comprehensive introduction to IMS mission, vision, structure, and ongoing tasks.",
+    "date": "2025-12-24T00:00:00",
+    "tags": ["IMS Foundation Series", "Group-13"],
+    "resources": [
+      {
+        "type": "video",
+        "url": "https://youtu.be/QJDQO-VYWsY?si=wADcnKGHMcUpo8yg",
+        "title": "IMS Introductory Session"
+      }
+    ]
+  },
+  {
+    "id": "27",
+    "title": "Bi-Weekly Holistic Growth Series",
+    "description": "Bi-weekly series focused on holistic growth covering mental health, Seerah, and global context understanding.",
+    "date": "2026-02-25T00:00:00",
+    "tags": ["Holistic Growth Series", "Group-13"],
+    "sessions": [
+      {
+        "title": "Mental Health & Inner Peace",
+        "description": "Building resilience for spiritual and professional success"
+      },
+      {
+        "title": "The Seerah",
+        "description": "Drawing practical guidance from the life of Prophet Muhammad (PBUH)"
+      },
+      {
+        "title": "Global Context",
+        "description": "Understanding power shifts and youth role in global climate"
+      }
+    ]
+  }
+]
