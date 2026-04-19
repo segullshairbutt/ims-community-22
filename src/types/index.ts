@@ -1,3 +1,5 @@
+export type EventStatus = 'upcoming' | 'past' | 'archived';
+
 export interface Resource {
   url: string;
   title: string;
@@ -9,7 +11,7 @@ export interface Event {
   description: string;
   date: string; // ISO 8601 format or simple date string
   tags: string[];
-  status: 'upcoming' | 'past' | 'archived';
+  status: EventStatus;
   meetingLink?: string;
   resources?: Resource[];
   presentedBy?: string;
