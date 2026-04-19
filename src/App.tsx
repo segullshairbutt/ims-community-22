@@ -1,17 +1,17 @@
-import { useState, useEffect } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import { Box, CircularProgress } from "@mui/material";
 import {
-  Box,
-  Typography,
-  AppBar,
-  Toolbar,
-  CircularProgress,
-  Container,
-} from "@mui/material";
-import { EventList } from "src/components/EventList";
-import { fetchEventsFromFirebase } from "src/firebase/eventService";
-import type { Event } from "src/types";
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { ProtectedRoute } from "src/components";
+import { useAuth } from "src/firebase/useAuth";
+import EventsListView from "./views/EventListView/EventListView";
+import LoginView from "./views/LoginView";
+import AdminPanelView from "./views/AdminPanelView";
 
 const theme = createTheme({
   palette: {
@@ -39,91 +39,47 @@ const theme = createTheme({
 });
 
 function App() {
-  const [events, setEvents] = useState<Event[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { loading: authLoading } = useAuth();
 
-  useEffect(() => {
-    fetchEventsFromFirebase()
-      .then(setEvents)
-      .catch((err) => {
-        setError(
-          "Failed to load events. Make sure Firebase is configured correctly.",
-        );
-        console.error(err);
-      })
-      .finally(() => setLoading(false));
-  }, []);
+  if (authLoading) {
+    return (
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            minHeight: "100vh",
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      </ThemeProvider>
+    );
+  }
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box
-        sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
-      >
-        <AppBar
-          position="static"
-          sx={{
-            background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-          }}
-        >
-          <Toolbar>
-            <Box sx={{ flexGrow: 1 }}>
-              <Typography variant="h5" component="div" sx={{ fontWeight: 700 }}>
-                📋 Community Events
-              </Typography>
-              <Typography variant="body2" sx={{ opacity: 0.95 }}>
-                Discover upcoming events, past sessions, and archived content
-              </Typography>
-            </Box>
-          </Toolbar>
-        </AppBar>
-
-        <Box component="main" sx={{ flex: 1, py: 6 }}>
-          {loading && (
-            <Container
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                minHeight: "400px",
-              }}
-            >
-              <CircularProgress />
-            </Container>
-          )}
-          {error && (
-            <Container>
-              <Box
-                sx={{
-                  p: 2,
-                  bgcolor: "#ffebee",
-                  borderRadius: 1,
-                  color: "#c62828",
-                }}
-              >
-                <Typography>{error}</Typography>
-              </Box>
-            </Container>
-          )}
-          {!loading && !error && <EventList events={events} />}
-        </Box>
-
-        <Box
-          component="footer"
-          sx={{
-            backgroundColor: "#2c3e50",
-            color: "white",
-            textAlign: "center",
-            py: 3,
-            mt: "auto",
-          }}
-        >
-          <Typography variant="body2">
-            &copy; 2026 IMS Community. All events rights reserved.
-          </Typography>
-        </Box>
-      </Box>
+      <Router basename="/ims-community-22/">
+        <Routes>
+          <Route path="/" element={<EventsListView />} />
+          <Route
+            path="/login"
+            element={<LoginView onLoginSuccess={() => {}} />}
+          />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <AdminPanelView />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Router>
     </ThemeProvider>
   );
 }

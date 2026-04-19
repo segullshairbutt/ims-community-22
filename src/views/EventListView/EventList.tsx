@@ -1,7 +1,16 @@
-import { useState } from 'react';
-import type { Event } from 'src/types';
-import { EventCard } from 'src/components/EventCard';
-import { Box, Typography, Container, Alert, Collapse, IconButton, TextField, InputAdornment } from '@mui/material';
+import { useState } from "react";
+import type { Event } from "src/types";
+import { EventCard } from "./EventCard";
+import {
+  Box,
+  Typography,
+  Container,
+  Alert,
+  Collapse,
+  IconButton,
+  TextField,
+  InputAdornment,
+} from "@mui/material";
 import {
   RocketLaunch as RocketLaunchIcon,
   History as HistoryIcon,
@@ -9,7 +18,7 @@ import {
   ExpandMore as ExpandMoreIcon,
   Search as SearchIcon,
   Clear as ClearIcon,
-} from '@mui/icons-material';
+} from "@mui/icons-material";
 
 interface EventSectionProps {
   title: string;
@@ -19,7 +28,13 @@ interface EventSectionProps {
   onToggle: () => void;
 }
 
-function EventSection({ title, events, icon, isExpanded, onToggle }: EventSectionProps) {
+function EventSection({
+  title,
+  events,
+  icon,
+  isExpanded,
+  onToggle,
+}: EventSectionProps) {
   if (events.length === 0) {
     return null;
   }
@@ -28,11 +43,11 @@ function EventSection({ title, events, icon, isExpanded, onToggle }: EventSectio
     <Box sx={{ marginBottom: 6 }}>
       <Box
         sx={{
-          display: 'flex',
-          alignItems: 'center',
+          display: "flex",
+          alignItems: "center",
           gap: 1,
           marginBottom: 3,
-          cursor: 'pointer',
+          cursor: "pointer",
         }}
         onClick={onToggle}
       >
@@ -43,8 +58,8 @@ function EventSection({ title, events, icon, isExpanded, onToggle }: EventSectio
         <IconButton
           size="small"
           sx={{
-            transform: isExpanded ? 'rotate(0deg)' : 'rotate(-90deg)',
-            transition: 'transform 0.3s',
+            transform: isExpanded ? "rotate(0deg)" : "rotate(-90deg)",
+            transition: "transform 0.3s",
           }}
           onClick={(e) => {
             e.stopPropagation();
@@ -55,7 +70,7 @@ function EventSection({ title, events, icon, isExpanded, onToggle }: EventSectio
         </IconButton>
       </Box>
       <Collapse in={isExpanded} timeout="auto">
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
           {events.map((event) => (
             <EventCard key={event.id} event={event} />
           ))}
@@ -73,11 +88,11 @@ export function EventList({ events }: EventListProps) {
   const [upcomingExpanded, setUpcomingExpanded] = useState(true);
   const [pastExpanded, setPastExpanded] = useState(true);
   const [archivedExpanded, setArchivedExpanded] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const upcomingEvents = events.filter((e) => e.status === 'upcoming');
-  const pastEvents = events.filter((e) => e.status === 'past');
-  const archivedEvents = events.filter((e) => e.status === 'archived');
+  const upcomingEvents = events.filter((e) => e.status === "upcoming");
+  const pastEvents = events.filter((e) => e.status === "past");
+  const archivedEvents = events.filter((e) => e.status === "archived");
 
   const filterEventsBySearch = (eventList: Event[]): Event[] => {
     if (!searchQuery.trim()) {
@@ -87,10 +102,17 @@ export function EventList({ events }: EventListProps) {
     const query = searchQuery.toLowerCase();
     return eventList.filter((event) => {
       const matchesTitle = event.title.toLowerCase().includes(query);
-      const matchesTags = event.tags.some((tag) => tag.toLowerCase().includes(query));
-      const matchesDescription = event.description.toLowerCase().includes(query);
-      const matchesPresentedBy = event.presentedBy?.toLowerCase().includes(query) || false;
-      return matchesTitle || matchesTags || matchesDescription || matchesPresentedBy;
+      const matchesTags = event.tags.some((tag) =>
+        tag.toLowerCase().includes(query),
+      );
+      const matchesDescription = event.description
+        .toLowerCase()
+        .includes(query);
+      const matchesPresentedBy =
+        event.presentedBy?.toLowerCase().includes(query) || false;
+      return (
+        matchesTitle || matchesTags || matchesDescription || matchesPresentedBy
+      );
     });
   };
 
@@ -98,7 +120,9 @@ export function EventList({ events }: EventListProps) {
   const filteredPast = filterEventsBySearch(pastEvents);
   const filteredArchived = filterEventsBySearch(archivedEvents);
   const hasResults =
-    filteredUpcoming.length > 0 || filteredPast.length > 0 || filteredArchived.length > 0;
+    filteredUpcoming.length > 0 ||
+    filteredPast.length > 0 ||
+    filteredArchived.length > 0;
 
   return (
     <Container maxWidth="lg">
@@ -120,7 +144,7 @@ export function EventList({ events }: EventListProps) {
                 <InputAdornment position="end">
                   <IconButton
                     size="small"
-                    onClick={() => setSearchQuery('')}
+                    onClick={() => setSearchQuery("")}
                     edge="end"
                   >
                     <ClearIcon />
@@ -141,27 +165,31 @@ export function EventList({ events }: EventListProps) {
       <EventSection
         title="Upcoming Events"
         events={filteredUpcoming}
-        icon={<RocketLaunchIcon sx={{ fontSize: 32, color: '#28a745' }} />}
+        icon={<RocketLaunchIcon sx={{ fontSize: 32, color: "#28a745" }} />}
         isExpanded={upcomingExpanded}
         onToggle={() => setUpcomingExpanded(!upcomingExpanded)}
       />
       <EventSection
         title="Past Events"
         events={filteredPast}
-        icon={<HistoryIcon sx={{ fontSize: 32, color: '#ffc107' }} />}
+        icon={<HistoryIcon sx={{ fontSize: 32, color: "#ffc107" }} />}
         isExpanded={pastExpanded}
         onToggle={() => setPastExpanded(!pastExpanded)}
       />
       <EventSection
         title="Archived Events"
         events={filteredArchived}
-        icon={<StorageIcon sx={{ fontSize: 32, color: '#6c757d' }} />}
-        isExpanded={searchQuery.trim() && filteredArchived.length > 0 ? true : archivedExpanded}
+        icon={<StorageIcon sx={{ fontSize: 32, color: "#6c757d" }} />}
+        isExpanded={
+          searchQuery.trim() && filteredArchived.length > 0
+            ? true
+            : archivedExpanded
+        }
         onToggle={() => setArchivedExpanded(!archivedExpanded)}
       />
 
       {events.length === 0 && (
-        <Alert severity="info" sx={{ textAlign: 'center' }}>
+        <Alert severity="info" sx={{ textAlign: "center" }}>
           No events to display
         </Alert>
       )}

@@ -178,8 +178,8 @@ export function EventCard({ event }: EventCardProps) {
                 href={resource.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                variant="contained"
-                color="success"
+                variant="outlined"
+                color="secondary"
                 size="small"
                 startIcon={<LinkIcon />}
               >
