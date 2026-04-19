@@ -89,7 +89,8 @@ export function EventList({ events }: EventListProps) {
       const matchesTitle = event.title.toLowerCase().includes(query);
       const matchesTags = event.tags.some((tag) => tag.toLowerCase().includes(query));
       const matchesDescription = event.description.toLowerCase().includes(query);
-      return matchesTitle || matchesTags || matchesDescription;
+      const matchesPresentedBy = event.presentedBy?.toLowerCase().includes(query) || false;
+      return matchesTitle || matchesTags || matchesDescription || matchesPresentedBy;
     });
   };
 

@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import {
   VideoCall as VideoCallIcon,
-  PlayCircle as PlayCircleIcon,
+  Link as LinkIcon,
   ExpandMore as ExpandMoreIcon,
 } from '@mui/icons-material';
 
@@ -48,8 +48,8 @@ export function EventCard({ event }: EventCardProps) {
     }
   };
 
-  const recordingLinks = event.recordingLinks || [];
-  const hasLinks = event.meetingLink || recordingLinks.length > 0;
+  const resources = event.resources || [];
+  const hasLinks = event.meetingLink || resources.length > 0;
   const descriptionExceedsLimit = event.description.length > DESCRIPTION_CHAR_LIMIT;
   const displayDescription = descriptionExpanded ? event.description : event.description.slice(0, DESCRIPTION_CHAR_LIMIT) + (descriptionExceedsLimit ? '...' : '');
 
@@ -91,9 +91,16 @@ export function EventCard({ event }: EventCardProps) {
           ))}
         </Box>
 
-        <Typography variant="caption" sx={{ color: '#666', display: 'block', marginBottom: 2 }}>
-          {formattedDate}
-        </Typography>
+        <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', marginBottom: 2, flexWrap: 'wrap' }}>
+          {event.presentedBy && (
+            <Typography variant="caption" sx={{ color: '#667eea' }}>
+              Presented by: {event.presentedBy}
+            </Typography>
+          )}
+          <Typography variant="caption" sx={{ color: '#666' }}>
+            {formattedDate}
+          </Typography>
+        </Box>
 
         <Box
           sx={{
@@ -141,19 +148,19 @@ export function EventCard({ event }: EventCardProps) {
                 {event.status !== 'upcoming' ? 'Meeting Ended' : 'Join Meeting'}
               </Button>
             )}
-            {recordingLinks.map((link, index) => (
+            {resources.map((resource, index) => (
               <Button
-                key={`recording-${index}`}
+                key={`resource-${index}`}
                 component="a"
-                href={link}
+                href={resource.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 variant="contained"
                 color="success"
                 size="small"
-                startIcon={<PlayCircleIcon />}
+                startIcon={<LinkIcon />}
               >
-                {recordingLinks.length > 1 ? `Recording ${index + 1}` : 'Watch Recording'}
+                {resource.title}
               </Button>
             ))}
           </Stack>

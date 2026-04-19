@@ -8,12 +8,10 @@
     "deadline": "2026-02-09T23:59:59",
     "resources": [
       {
-        "type": "video",
         "url": "https://youtu.be/f1bqPuWudV0?si=UNX3kOBMNnSzGHgE",
         "title": "Task Briefing Video"
       },
       {
-        "type": "form",
         "url": "https://forms.gle/UcpJ5F6mx4HDWEUX7",
         "title": "Volunteer Captain Form"
       }
@@ -26,8 +24,11 @@
     "date": "2025-12-23T20:00:00",
     "tags": ["IMS Task Series", "Group-13"],
     "meetingLink": "https://calendar.app.google/CSdjM1hbfzvpFnHH8",
-    "recordingLinks": [
-      "https://fathom.video/share/dEFp21QDKPvUdzVJmXKCjjE7t1h9aowc"
+    "resources": [
+      {
+        "url": "https://fathom.video/share/dEFp21QDKPvUdzVJmXKCjjE7t1h9aowc",
+        "title": "Recording"
+      }
     ]
   },
   {
@@ -35,10 +36,8 @@
     "title": "Allah's Names Discussion - Al Jabbar, Al Basit, Al Khafiz, Al Rafey, Al Moiz",
     "description": "Study and discussion of five divine names with their meanings and significance.",
     "date": "2026-02-25T15:00:00",
-    "duration": "30-45 minutes",
-    "platform": "Google Meet",
-    "meetingLink": "https://meet.google.com/ebr-ggrv-zmx",
-    "tags": ["Islamic Knowledge Series", "Group-13"]
+    "tags": ["Islamic Knowledge Series", "Group-13"],
+    "meetingLink": "https://meet.google.com/ebr-ggrv-zmx"
   },
   {
     "id": "4",
@@ -63,7 +62,6 @@
     "tags": ["Seerah Series", "Group-13"],
     "resources": [
       {
-        "type": "book",
         "url": "https://drive.google.com/file/d/1S5SBExeoPaB60uUuQIY2kN02_f9g8UwO/view?usp=drive_open",
         "title": "Ar-Raheeq Al-Makhtum (Pages 219-230)"
       }
@@ -76,8 +74,11 @@
     "date": "2026-01-02T00:00:00",
     "tags": ["Seerah Series", "Group-13"],
     "meetingLink": "https://meet.google.com/ydi-zzwd-fsm",
-    "recordingLinks": [
-      "https://fathom.video/share/D63UFzPtUzTmjxrGHtKSqea2UyM3vbG-"
+    "resources": [
+      {
+        "url": "https://fathom.video/share/D63UFzPtUzTmjxrGHtKSqea2UyM3vbG-",
+        "title": "Recording"
+      }
     ]
   },
   {
@@ -88,8 +89,11 @@
     "tags": ["IMS Sessions", "Group-13"],
     "presentedBy": "Mian Fahad",
     "meetingLink": "https://meet.google.com/wzf-cezt-mop",
-    "recordingLinks": [
-      "https://fathom.video/share/paY2aczwDKANa6YAYdHaq49t2BCqpiuM"
+    "resources": [
+      {
+        "url": "https://fathom.video/share/paY2aczwDKANa6YAYdHaq49t2BCqpiuM",
+        "title": "Recording"
+      }
     ]
   },
   {
@@ -99,10 +103,15 @@
     "date": "2026-04-01T20:30:00",
     "tags": ["IMS Sessions", "Group-13"],
     "presentedBy": "Muhammad Asadullah",
-    "duration": "60 minutes",
-    "recordingLinks": [
-      "https://fathom.video/share/VY1_Gnxhsz8yxYn6N4bi9vegdtLgcW4s",
-      "https://tldv.io/app/meetings/69cd39f335919300139b6340/"
+    "resources": [
+      {
+        "url": "https://fathom.video/share/VY1_Gnxhsz8yxYn6N4bi9vegdtLgcW4s",
+        "title": "Recording"
+      },
+      {
+        "url": "https://tldv.io/app/meetings/69cd39f335919300139b6340/",
+        "title": "Recording"
+      }
     ]
   },
   {
@@ -115,7 +124,6 @@
     "meetingLink": "https://meet.google.com/utj-fmpe-opy",
     "resources": [
       {
-        "type": "book",
         "url": "https://drive.google.com/file/d/1wH1J2QVGec8op-rGao3C02ZFDAIeYKVH/view?usp=drivesdk",
         "title": "Ar-Raheeq Al-Makhtum (Pages 273-283)"
       }
@@ -126,12 +134,10 @@
     "title": "Qur'an Study Circle - Friday Class",
     "description": "Weekly Qur'an study circle focusing on translation, root words, grammar, and tafseer with shared reflections. Every Friday at 9:00 PM.",
     "date": "2026-04-10T21:00:00",
-    "recurringPattern": "Every Friday",
     "tags": ["Qur'an Study Circle", "Group-13"],
     "meetingLink": "https://meet.google.com/ydi-zzwd-fsm",
     "resources": [
       {
-        "type": "recordings",
         "url": "https://docs.google.com/spreadsheets/d/1BG5OJ3KAVc3McW2gX5825_VO1oLjCR5sVYaPoNA3UzY/edit?usp=sharing",
         "title": "Previous Recording Links"
       }
@@ -144,7 +150,6 @@
     "date": "2026-04-11T20:00:00",
     "tags": ["Group Presentations", "Group-13"],
     "presentedBy": "Asma Asad",
-    "duration": "90 minutes",
     "endTime": "2026-04-11T21:30:00"
   },
   {
@@ -255,7 +260,6 @@
     "tags": ["IMS Foundation Series", "Group-13"],
     "resources": [
       {
-        "type": "video",
         "url": "https://youtu.be/QJDQO-VYWsY?si=wADcnKGHMcUpo8yg",
         "title": "IMS Introductory Session"
       }
