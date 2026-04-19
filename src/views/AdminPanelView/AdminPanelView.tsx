@@ -12,6 +12,7 @@ export default function AdminPanelView() {
 
   const fetchEvents = async () => {
     try {
+      setLoading(true);
       const data = await fetchEventsFromFirebase();
       setEvents(data);
       setError(null);
@@ -60,7 +61,11 @@ export default function AdminPanelView() {
           <CircularProgress />
         </Container>
       ) : (
-        <AdminPanel events={events} onDataChange={fetchEvents} />
+        <AdminPanel
+          events={events}
+          setEvents={setEvents}
+          onDataChange={fetchEvents}
+        />
       )}
     </Layout>
   );
