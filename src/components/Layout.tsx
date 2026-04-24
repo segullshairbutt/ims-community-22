@@ -5,6 +5,7 @@ import {
   Home as HomeIcon,
   Settings as SettingsIcon,
   Login as LoginIcon,
+  List as ListIcon,
 } from "@mui/icons-material";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { logout } from "src/firebase/auth";
@@ -72,6 +73,19 @@ export function Layout({ children, title, subtitle }: LayoutProps) {
                       }}
                     >
                       Manage
+                    </Button>
+                  </Link>
+                )}
+                {isAdminPage && (
+                  <Link to="/" style={{ textDecoration: "none" }}>
+                    <Button
+                      color="inherit"
+                      startIcon={<ListIcon />}
+                      sx={{
+                        "&:hover": { backgroundColor: "rgba(255,255,255,0.1)" },
+                      }}
+                    >
+                      All Events
                     </Button>
                   </Link>
                 )}
