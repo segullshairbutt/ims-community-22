@@ -28,6 +28,7 @@ interface EventSectionProps {
   onToggle: () => void;
   onEditEvent?: (event: Event) => void;
   onDeleteEvent?: (id: string) => Promise<void>;
+  onCloneEvent?: (event: Event) => void;
 }
 
 function EventSection({
@@ -38,6 +39,7 @@ function EventSection({
   onToggle,
   onEditEvent,
   onDeleteEvent,
+  onCloneEvent,
 }: EventSectionProps) {
   if (events.length === 0) {
     return null;
@@ -83,6 +85,7 @@ function EventSection({
               onDelete={
                 onDeleteEvent ? () => onDeleteEvent(event.id) : undefined
               }
+              onClone={onCloneEvent ? () => onCloneEvent(event) : undefined}
             />
           ))}
         </Box>
@@ -95,12 +98,14 @@ interface EventListProps {
   events: Event[];
   onEditEvent?: (event: Event) => void;
   onDeleteEvent?: (id: string) => Promise<void>;
+  onCloneEvent?: (event: Event) => void;
 }
 
 export function EventList({
   events,
   onEditEvent,
   onDeleteEvent,
+  onCloneEvent,
 }: EventListProps) {
   const [upcomingExpanded, setUpcomingExpanded] = useState(true);
   const [pastExpanded, setPastExpanded] = useState(true);
@@ -187,6 +192,7 @@ export function EventList({
         onToggle={() => setUpcomingExpanded(!upcomingExpanded)}
         onEditEvent={onEditEvent}
         onDeleteEvent={onDeleteEvent}
+        onCloneEvent={onCloneEvent}
       />
       <EventSection
         title="Past Events"
@@ -196,6 +202,7 @@ export function EventList({
         onToggle={() => setPastExpanded(!pastExpanded)}
         onEditEvent={onEditEvent}
         onDeleteEvent={onDeleteEvent}
+        onCloneEvent={onCloneEvent}
       />
       <EventSection
         title="Archived Events"
@@ -209,6 +216,7 @@ export function EventList({
         onToggle={() => setArchivedExpanded(!archivedExpanded)}
         onEditEvent={onEditEvent}
         onDeleteEvent={onDeleteEvent}
+        onCloneEvent={onCloneEvent}
       />
 
       {events.length === 0 && (

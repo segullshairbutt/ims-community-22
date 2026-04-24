@@ -3,6 +3,7 @@ import {
   Edit as EditIcon,
   Delete as DeleteIcon,
   Add as AddIcon,
+  FileCopy as FileCopyIcon,
 } from "@mui/icons-material";
 import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
 import type { GridColDef } from "@mui/x-data-grid";
@@ -30,6 +31,7 @@ export function AdminPanel({
     handleAddEvent,
     handleEditEvent,
     handleDeleteEvent,
+    handleCloneEvent,
     handleCloseDialog,
     handleSubmitEvent,
   } = useEventOperations({
@@ -83,8 +85,13 @@ export function AdminPanel({
       field: "actions",
       headerName: "Actions",
       type: "actions",
-      width: 100,
+      width: 120,
       getActions: (params) => [
+        <GridActionsCellItem
+          icon={<FileCopyIcon />}
+          label="Clone"
+          onClick={() => handleCloneEvent(params.row)}
+        />,
         <GridActionsCellItem
           icon={<EditIcon />}
           label="Edit"

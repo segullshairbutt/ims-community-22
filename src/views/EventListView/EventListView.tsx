@@ -30,6 +30,7 @@ export default function EventsListView() {
     handleAddEvent,
     handleEditEvent,
     handleDeleteEvent,
+    handleCloneEvent,
     handleCloseDialog,
     handleSubmitEvent,
   } = useEventOperations({
@@ -99,6 +100,7 @@ export default function EventsListView() {
           events={events}
           onEditEvent={user ? handleEditEvent : undefined}
           onDeleteEvent={user ? handleDeleteEvent : undefined}
+          onCloneEvent={user ? handleCloneEvent : undefined}
         />
       )}
 

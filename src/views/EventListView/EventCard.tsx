@@ -17,12 +17,14 @@ import {
   ExpandMore as ExpandMoreIcon,
   Edit as EditIcon,
   Delete as DeleteIcon,
+  FileCopy as FileCopyIcon,
 } from "@mui/icons-material";
 
 interface EventCardProps {
   event: Event;
   onEdit?: () => void;
   onDelete?: () => void;
+  onClone?: () => void;
 }
 
 const DESCRIPTION_CHAR_LIMIT = 120;
@@ -34,7 +36,12 @@ const STATUS_COLOR_MAP: Record<EventStatus, "success" | "warning" | "default"> =
     archived: "default",
   };
 
-export function EventCard({ event, onEdit, onDelete }: EventCardProps) {
+export function EventCard({
+  event,
+  onEdit,
+  onDelete,
+  onClone,
+}: EventCardProps) {
   const [descriptionExpanded, setDescriptionExpanded] = useState(false);
   const eventDate = new Date(event.date);
 
@@ -90,6 +97,16 @@ export function EventCard({ event, onEdit, onDelete }: EventCardProps) {
             />
           </Box>
           <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+            {onClone && (
+              <IconButton
+                size="small"
+                color="info"
+                onClick={onClone}
+                title="Clone event"
+              >
+                <FileCopyIcon />
+              </IconButton>
+            )}
             {onEdit && (
               <IconButton
                 size="small"

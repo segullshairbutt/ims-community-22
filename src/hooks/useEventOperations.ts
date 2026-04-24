@@ -6,6 +6,7 @@ import {
   collection,
   updateDoc,
 } from "firebase/firestore";
+import { format, parse } from "date-fns";
 import { db } from "src/firebase/config";
 import type { Event, EventData } from "src/types";
 import { getEventStatus } from "src/utils/eventStatus";
@@ -21,13 +22,13 @@ export interface EventFormValues {
 }
 
 /**
- * Returns default form values with current date/time
+ * Returns default form values with current date/time in local timezone
  */
 const getDefaultEventFormValues = (): EventFormValues => {
   return {
     title: "",
     description: "",
-    date: new Date().toISOString().slice(0, 16),
+    date: format(new Date(), "yyyy-MM-dd'T'HH:mm"),
     tags: [],
     meetingLink: "",
     presentedBy: "",
@@ -53,6 +54,7 @@ interface UseEventOperationsReturn {
   handleAddEvent: () => void;
   handleEditEvent: (event: Event) => void;
   handleDeleteEvent: (id: string) => Promise<void>;
+  handleCloneEvent: (event: Event) => void;
   handleCloseDialog: () => void;
   handleSubmitEvent: (values: EventFormValues) => Promise<void>;
 }
@@ -82,7 +84,7 @@ export function useEventOperations({
 
   const handleEditEvent = (event: Event) => {
     setEditingId(event.id);
-    const dateString = new Date(event.date).toISOString().slice(0, 16);
+    const dateString = format(new Date(event.date), "yyyy-MM-dd'T'HH:mm");
     const resources = Array.isArray(event.resources)
       ? (event.resources as Array<{ title: string; url: string }>)
       : [];
@@ -114,6 +116,24 @@ export function useEventOperations({
     }
   };
 
+  const handleCloneEvent = (event: Event) => {
+    setEditingId(null);
+    const dateString = format(new Date(), "yyyy-MM-dd'T'HH:mm");
+    const resources = Array.isArray(event.resources)
+      ? (event.resources as Array<{ title: string; url: string }>)
+      : [];
+    setInitialValues({
+      title: `${event.title} (Copy)`,
+      description: event.description,
+      date: dateString,
+      tags: event.tags,
+      meetingLink: event.meetingLink || "",
+      presentedBy: event.presentedBy || "",
+      resources,
+    });
+    setOpenDialog(true);
+  };
+
   const handleCloseDialog = () => {
     setOpenDialog(false);
     setEditingId(null);
@@ -123,10 +143,11 @@ export function useEventOperations({
   const handleSubmitEvent = async (values: EventFormValues) => {
     try {
       setError(null);
+      const parsedDate = parse(values.date, "yyyy-MM-dd'T'HH:mm", new Date());
       const eventData: Omit<EventData, "id"> = {
         title: values.title,
         description: values.description,
-        date: new Date(values.date).toISOString(),
+        date: parsedDate.toISOString(),
         tags: values.tags,
         meetingLink: values.meetingLink,
         presentedBy: values.presentedBy,
@@ -156,7 +177,7 @@ export function useEventOperations({
           ...eventData,
           status: getEventStatus(eventData.date),
         };
-        setEvents([...events, newEvent]);
+        setEvents([newEvent, ...events]);
       }
 
       handleCloseDialog();
@@ -178,6 +199,7 @@ export function useEventOperations({
     handleAddEvent,
     handleEditEvent,
     handleDeleteEvent,
+    handleCloneEvent,
     handleCloseDialog,
     handleSubmitEvent,
   };
