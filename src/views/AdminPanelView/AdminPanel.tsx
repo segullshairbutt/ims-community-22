@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Box, Button, Typography, Paper, Alert } from "@mui/material";
 import {
   Edit as EditIcon,
@@ -7,9 +6,8 @@ import {
 } from "@mui/icons-material";
 import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
 import type { GridColDef } from "@mui/x-data-grid";
-import { deleteDoc, doc } from "firebase/firestore";
-import { db } from "src/firebase/config";
 import type { Event } from "src/types";
+import { useEventOperations } from "src/hooks";
 import { EventForm } from "./EventForm";
 
 interface AdminPanelProps {
@@ -23,73 +21,22 @@ export function AdminPanel({
   setEvents,
   onDataChange,
 }: AdminPanelProps) {
-  const [openDialog, setOpenDialog] = useState(false);
-  const [editingId, setEditingId] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [initialValues, setInitialValues] = useState({
-    title: "",
-    description: "",
-    date: new Date().toISOString().slice(0, 16),
-    tags: [] as string[],
-    meetingLink: "",
-    presentedBy: "",
-    resources: [] as Array<{ title: string; url: string }>,
+  const {
+    openDialog,
+    editingId,
+    error,
+    setError,
+    initialValues,
+    handleAddEvent,
+    handleEditEvent,
+    handleDeleteEvent,
+    handleCloseDialog,
+    handleSubmitEvent,
+  } = useEventOperations({
+    events,
+    setEvents,
+    onDataChange,
   });
-
-  const handleAddEvent = () => {
-    setEditingId(null);
-    const now = new Date();
-    const dateString = now.toISOString().slice(0, 16);
-    setInitialValues({
-      title: "",
-      description: "",
-      date: dateString,
-      tags: [],
-      meetingLink: "",
-      presentedBy: "",
-      resources: [],
-    });
-    setOpenDialog(true);
-  };
-
-  const handleEditEvent = (event: Event) => {
-    setEditingId(event.id);
-    const dateString = new Date(event.date).toISOString().slice(0, 16);
-    const resources = Array.isArray(event.resources)
-      ? (event.resources as Array<{ title: string; url: string }>)
-      : [];
-    setInitialValues({
-      title: event.title,
-      description: event.description,
-      date: dateString,
-      tags: event.tags,
-      meetingLink: event.meetingLink || "",
-      presentedBy: event.presentedBy || "",
-      resources,
-    });
-    setOpenDialog(true);
-  };
-
-  const handleDeleteEvent = async (id: string) => {
-    if (confirm("Are you sure you want to delete this event?")) {
-      try {
-        await deleteDoc(doc(db, "events", id));
-        // Optimistic update: remove from local state immediately
-        setEvents(events.filter((e) => e.id !== id));
-        setError(null);
-      } catch (err) {
-        setError("Failed to delete event");
-        console.error(err);
-        // Fallback: refetch on error
-        onDataChange?.();
-      }
-    }
-  };
-
-  const handleCloseDialog = () => {
-    setOpenDialog(false);
-    setEditingId(null);
-  };
 
   const columns: GridColDef[] = [
     {
@@ -200,9 +147,9 @@ export function AdminPanel({
         onClose={handleCloseDialog}
         editingId={editingId}
         initialValues={initialValues}
-        events={events}
-        setEvents={setEvents}
-        onDataChange={onDataChange}
+        onSubmit={handleSubmitEvent}
+        error={error}
+        setError={setError}
       />
     </Box>
   );

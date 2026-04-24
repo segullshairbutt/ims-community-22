@@ -11,10 +11,7 @@ import {
 } from "@mui/material";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { collection, addDoc, updateDoc, doc } from "firebase/firestore";
-import { db } from "src/firebase/config";
-import type { Event } from "src/types";
-import { getEventStatus } from "src/utils/eventStatus";
+import type { EventFormValues } from "src/hooks";
 
 const validationSchema = Yup.object({
   title: Yup.string().required("Title is required"),
@@ -35,18 +32,10 @@ interface EventFormProps {
   open: boolean;
   onClose: () => void;
   editingId: string | null;
-  initialValues: {
-    title: string;
-    description: string;
-    date: string;
-    tags: string[];
-    meetingLink: string;
-    presentedBy: string;
-    resources: Array<{ title: string; url: string }>;
-  };
-  events: Event[];
-  setEvents: (events: Event[]) => void;
-  onDataChange?: () => void;
+  initialValues: EventFormValues;
+  onSubmit: (values: EventFormValues) => Promise<void>;
+  error?: string | null;
+  setError?: (error: string | null) => void;
 }
 
 export function EventForm({
@@ -54,11 +43,14 @@ export function EventForm({
   onClose,
   editingId,
   initialValues,
-  events,
-  setEvents,
-  onDataChange,
+  onSubmit,
+  error: externalError,
+  setError: setExternalError,
 }: EventFormProps) {
-  const [error, setError] = useState<string | null>(null);
+  const [internalError, setInternalError] = useState<string | null>(null);
+
+  const error = externalError ?? internalError;
+  const setError = setExternalError ?? setInternalError;
 
   const handleClose = () => {
     setError(null);
@@ -78,55 +70,12 @@ export function EventForm({
           onSubmit={async (values, { setSubmitting }) => {
             setError(null);
             try {
-              const eventData: Record<string, unknown> = {
-                title: values.title,
-                description: values.description,
-                date: new Date(values.date).toISOString(),
-                tags: values.tags.filter((t) => t.trim()),
-                resources: values.resources.filter(
-                  (r) => r.title.trim() && r.url.trim(),
-                ),
-              };
-
-              // Only add optional fields if they have values
-              if (values.meetingLink?.trim()) {
-                eventData.meetingLink = values.meetingLink;
-              }
-              if (values.presentedBy?.trim()) {
-                eventData.presentedBy = values.presentedBy;
-              }
-
-              if (editingId) {
-                await updateDoc(doc(db, "events", editingId), eventData);
-                // Optimistic update: update in local state
-                const updatedEvents = events.map((e) =>
-                  e.id === editingId ? { ...e, ...eventData } : e,
-                );
-                setEvents(updatedEvents);
-              } else {
-                const docRef = await addDoc(
-                  collection(db, "events"),
-                  eventData,
-                );
-                // Optimistic update: add new event to local state
-                const newEvent: Event = {
-                  id: docRef.id,
-                  ...eventData,
-                  status: getEventStatus(eventData.date as string),
-                } as Event;
-                setEvents([newEvent, ...events]);
-              }
-
-              handleClose();
+              await onSubmit(values);
             } catch (err) {
               console.error(err);
               setError(
                 err instanceof Error ? err.message : "Failed to save event",
               );
-              // Only refetch on error for edits; create relies on optimistic update
-              if (editingId) {
-                onDataChange?.();
-              }
             } finally {
               setSubmitting(false);
             }
