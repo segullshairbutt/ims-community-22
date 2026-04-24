@@ -49,7 +49,7 @@ export default function LoginView({ onLoginSuccess }: LoginProps) {
             try {
               await signIn(values.email, values.password);
               onLoginSuccess?.();
-              navigate("/admin");
+              navigate("/");
             } catch (err) {
               const message =
                 err instanceof Error ? err.message : "Login failed";

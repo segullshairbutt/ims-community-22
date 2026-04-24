@@ -15,10 +15,14 @@ import {
   VideoCall as VideoCallIcon,
   Link as LinkIcon,
   ExpandMore as ExpandMoreIcon,
+  Edit as EditIcon,
+  Delete as DeleteIcon,
 } from "@mui/icons-material";
 
 interface EventCardProps {
   event: Event;
+  onEdit?: () => void;
+  onDelete?: () => void;
 }
 
 const DESCRIPTION_CHAR_LIMIT = 120;
@@ -30,7 +34,7 @@ const STATUS_COLOR_MAP: Record<EventStatus, "success" | "warning" | "default"> =
     archived: "default",
   };
 
-export function EventCard({ event }: EventCardProps) {
+export function EventCard({ event, onEdit, onDelete }: EventCardProps) {
   const [descriptionExpanded, setDescriptionExpanded] = useState(false);
   const eventDate = new Date(event.date);
 
@@ -72,15 +76,41 @@ export function EventCard({ event }: EventCardProps) {
             marginBottom: 2,
           }}
         >
-          <Typography variant="h5" sx={{ flex: 1, color: "#2c3e50" }}>
-            {event.title}
-          </Typography>
-          <Chip
-            label={event.status.charAt(0).toUpperCase() + event.status.slice(1)}
-            color={STATUS_COLOR_MAP[event.status]}
-            size="small"
-            sx={{ whiteSpace: "nowrap" }}
-          />
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1, flex: 1 }}>
+            <Typography variant="h5" sx={{ color: "#2c3e50" }}>
+              {event.title}
+            </Typography>
+            <Chip
+              label={
+                event.status.charAt(0).toUpperCase() + event.status.slice(1)
+              }
+              color={STATUS_COLOR_MAP[event.status]}
+              size="small"
+              sx={{ whiteSpace: "nowrap" }}
+            />
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+            {onEdit && (
+              <IconButton
+                size="small"
+                color="primary"
+                onClick={onEdit}
+                title="Edit event"
+              >
+                <EditIcon />
+              </IconButton>
+            )}
+            {onDelete && (
+              <IconButton
+                size="small"
+                color="error"
+                onClick={onDelete}
+                title="Delete event"
+              >
+                <DeleteIcon />
+              </IconButton>
+            )}
+          </Box>
         </Box>
 
         <Box
@@ -142,9 +172,13 @@ export function EventCard({ event }: EventCardProps) {
         </Box>
       </CardContent>
 
-      {hasLinks && (
+      {(hasLinks || onEdit || onDelete) && (
         <CardActions>
-          <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap", gap: 1 }}>
+          <Stack
+            direction="row"
+            spacing={1}
+            sx={{ flexWrap: "wrap", gap: 1, width: "100%" }}
+          >
             {event.meetingLink && (
               <Button
                 component="a"

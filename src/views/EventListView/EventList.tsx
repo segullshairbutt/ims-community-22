@@ -26,6 +26,8 @@ interface EventSectionProps {
   icon: React.ReactNode;
   isExpanded: boolean;
   onToggle: () => void;
+  onEditEvent?: (event: Event) => void;
+  onDeleteEvent?: (id: string) => Promise<void>;
 }
 
 function EventSection({
@@ -34,6 +36,8 @@ function EventSection({
   icon,
   isExpanded,
   onToggle,
+  onEditEvent,
+  onDeleteEvent,
 }: EventSectionProps) {
   if (events.length === 0) {
     return null;
@@ -72,7 +76,14 @@ function EventSection({
       <Collapse in={isExpanded} timeout="auto">
         <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
           {events.map((event) => (
-            <EventCard key={event.id} event={event} />
+            <EventCard
+              key={event.id}
+              event={event}
+              onEdit={onEditEvent ? () => onEditEvent(event) : undefined}
+              onDelete={
+                onDeleteEvent ? () => onDeleteEvent(event.id) : undefined
+              }
+            />
           ))}
         </Box>
       </Collapse>
@@ -82,9 +93,15 @@ function EventSection({
 
 interface EventListProps {
   events: Event[];
+  onEditEvent?: (event: Event) => void;
+  onDeleteEvent?: (id: string) => Promise<void>;
 }
 
-export function EventList({ events }: EventListProps) {
+export function EventList({
+  events,
+  onEditEvent,
+  onDeleteEvent,
+}: EventListProps) {
   const [upcomingExpanded, setUpcomingExpanded] = useState(true);
   const [pastExpanded, setPastExpanded] = useState(true);
   const [archivedExpanded, setArchivedExpanded] = useState(false);
@@ -168,6 +185,8 @@ export function EventList({ events }: EventListProps) {
         icon={<RocketLaunchIcon sx={{ fontSize: 32, color: "#28a745" }} />}
         isExpanded={upcomingExpanded}
         onToggle={() => setUpcomingExpanded(!upcomingExpanded)}
+        onEditEvent={onEditEvent}
+        onDeleteEvent={onDeleteEvent}
       />
       <EventSection
         title="Past Events"
@@ -175,6 +194,8 @@ export function EventList({ events }: EventListProps) {
         icon={<HistoryIcon sx={{ fontSize: 32, color: "#ffc107" }} />}
         isExpanded={pastExpanded}
         onToggle={() => setPastExpanded(!pastExpanded)}
+        onEditEvent={onEditEvent}
+        onDeleteEvent={onDeleteEvent}
       />
       <EventSection
         title="Archived Events"
@@ -186,6 +207,8 @@ export function EventList({ events }: EventListProps) {
             : archivedExpanded
         }
         onToggle={() => setArchivedExpanded(!archivedExpanded)}
+        onEditEvent={onEditEvent}
+        onDeleteEvent={onDeleteEvent}
       />
 
       {events.length === 0 && (
